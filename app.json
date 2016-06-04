@@ -1,0 +1,7 @@
+{
+  "name": "Silex Storyblok Boilerplate",
+  "description": "A barebones silex app for storyblok",
+  "repository": "https://github.com/storyblok/silex-boilerplate",
+  "logo": "https://www.storyblok.com/images/favicon.png",
+  "keywords": ["silex", "storyblok"]
+}

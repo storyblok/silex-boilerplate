@@ -2,6 +2,14 @@
 
 This is a very basic setup using the minimalistic silex framework and twig as rendering engine to help you kickstart your storyblok projects.
 
+## Setup
+
+Be sure to change privateToken and spaceId in webapp/bootstrap.php
+
+## One Click deploy with heroku
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
 ## Install composer packages
 
 ```
