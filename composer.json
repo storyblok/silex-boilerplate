@@ -1,0 +1,19 @@
+{
+    "require": {
+        "silex/silex": "~1.2",
+        "twig/twig": "~1.18",
+        "symfony/security": "~2.6",
+        "symfony/twig-bridge": "^2.7",
+        "guzzlehttp/guzzle": "^6.1",
+        "doctrine/cache": "^1.4",
+        "storyblok/php-client": "dev-master"
+    },
+    "autoload": {
+        "psr-0": {
+            "App": "webapp/src"
+        }
+    },
+    "config": {
+    	"vendor-dir": "webapp/vendor"
+    }
+}

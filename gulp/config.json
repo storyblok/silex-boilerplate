@@ -1,0 +1,33 @@
+{
+    "project":"neubau",
+    "src": {
+        "content": "data",
+        "app": "app",
+        "images": "app/images",
+        "fonts": "app/fonts",
+        "icons": "app/icons",
+        "scss": "app/styles",
+        "js": "app/scripts",
+        "img": "app/images"
+    },
+    "dest": {
+        "public": "public",
+        "content": "public/data",
+        "css": "public/styles",
+        "js": "public/scripts",
+        "images": "public/images",
+        "fonts": "public/fonts",
+        "compress": "dist"
+    },
+    "browsers": [
+        "ie >= 11",
+        "ie_mob >= 11",
+        "ff >= 46",
+        "chrome >= 49",
+        "safari >= 8",
+        "opera >= 23",
+        "ios >= 8",
+        "android >= 4.4",
+        "bb >= 1"
+    ]
+}

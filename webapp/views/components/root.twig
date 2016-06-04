@@ -1,0 +1,9 @@
+{% extends "index.twig" %}
+
+{% block content %}
+
+{% for key, blok in story.content.body %}
+	{% include 'components/' ~ blok.component ~ '.twig' with {blok: blok} %}
+{% endfor %}
+
+{% endblock %}
