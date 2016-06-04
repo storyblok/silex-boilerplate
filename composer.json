@@ -1,5 +1,6 @@
 {
     "require": {
+        "php": "^5.6.0",
         "silex/silex": "~1.2",
         "twig/twig": "~1.18",
         "symfony/security": "~2.6",

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "7412e2a249d8f8899ad66df83f64dfff",
-    "content-hash": "2f9f5aa2ba0befea3926e423ed16b7c2",
+    "hash": "752f773ad8e146321478bcd8350e2c3b",
+    "content-hash": "afb432b83ad32a4f7e2b88eedf7acc47",
     "packages": [
         {
             "name": "doctrine/cache",
@@ -554,12 +554,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/storyblok/php-client.git",
-                "reference": "90d212fe57b9c35cf6c49c49b4bc0e19bb29f12c"
+                "reference": "1f763dc70d026c58412a9d9a4d09b09344315776"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/storyblok/php-client/zipball/90d212fe57b9c35cf6c49c49b4bc0e19bb29f12c",
-                "reference": "90d212fe57b9c35cf6c49c49b4bc0e19bb29f12c",
+                "url": "https://api.github.com/repos/storyblok/php-client/zipball/1f763dc70d026c58412a9d9a4d09b09344315776",
+                "reference": "1f763dc70d026c58412a9d9a4d09b09344315776",
                 "shasum": ""
             },
             "require": {
@@ -586,7 +586,7 @@
             "keywords": [
                 "storyblok"
             ],
-            "time": "2016-06-04 07:50:33"
+            "time": "2016-06-04 16:21:52"
         },
         {
             "name": "symfony/debug",
@@ -1549,6 +1549,8 @@
     },
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "php": "^5.6.0"
+    },
     "platform-dev": []
 }

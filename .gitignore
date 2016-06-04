@@ -13,5 +13,6 @@ webapp/cache
 webapp/app.db
 public/*
 !public/index.php
+!public/.htaccess
 cache/*
 !cache/keep
