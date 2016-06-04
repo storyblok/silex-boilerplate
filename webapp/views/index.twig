@@ -12,8 +12,10 @@
 <body>
 	{% block content %}{% endblock %}
 
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+	<script type="text/javascript" src="{{ asset('scripts/main.js') }}"></script>
+
 	{% if app.request.get('_storyblok') %}
-		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 		<script type="text/javascript" src="//www.storyblok.com/storyblok.js"></script>
 		<script type="text/javascript">
 			storyblok.init({});
@@ -27,8 +29,5 @@
 			});
 		</script>
 	{% endif %}
-	<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyB1CIlultBqwGs2O9cfO5fw1TXMZi0r8dQ" type="text/javascript"></script>
-	<script type="text/javascript" src="{{ asset('scripts/main.js') }}"></script>
-	{% block googleAnalytics %}{% endblock %}
 </body>
 </html>
