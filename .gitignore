@@ -4,7 +4,6 @@
 *.sublime-workspace
 *.sublime-project
 bower_components
-composer.lock
 cookie.txt
 dist
 node_modules
