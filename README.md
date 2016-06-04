@@ -12,10 +12,10 @@ sudo mv composer.phar /usr/local/bin/composer
 composer install
 ```
 
-## Load components
+## Install npm packages
 
 ```
-npm install && composer install
+npm install
 ```
 
 ## Start the server
