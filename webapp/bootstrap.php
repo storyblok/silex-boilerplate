@@ -23,8 +23,8 @@ $app->register(new Silex\Provider\UrlGeneratorServiceProvider());
 $app->register(new App\Helpers\Twig());
 $app->register(new App\Providers\Storyblok(), array(
     'storyblok.options' => array(
-        'privateToken' => 'Lm42nyfqOZFr4DWV0Z9bIAtt',
-        'spaceId' => '39821',
+        'privateToken' => 'oJKorCQdK8DANs7EaIj9sAtt',
+        'spaceId' => '39839',
         'cacheProvider' => 'filesystem',
         'cacheFolder' => __DIR__ . '/../cache/'
     )

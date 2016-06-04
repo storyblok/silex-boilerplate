@@ -16,10 +16,10 @@ class Web implements ControllerProviderInterface {
             $data = [];
 
             try {
-                // How to use without the silex provider:
+                // How to use WITHOUT the silex provider:
                 //  
-                // $client = new \Storyblok\Client('QgqFoHARXjCcfid2kriueAtt');
-                // $client->setSpace('39833');
+                // $client = new \Storyblok\Client('###insert-private-token###');
+                // $client->setSpace('###insert-space-id###');
                 // $client->setCache('filesytem', $app['config.cacheFolder']);
                 // $client->getStoryBySlug($app['config.locale'] . '/' . $slug);
                 // $data = $client->getStoryContent();
