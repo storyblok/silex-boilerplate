@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "752f773ad8e146321478bcd8350e2c3b",
-    "content-hash": "afb432b83ad32a4f7e2b88eedf7acc47",
+    "hash": "f616271858b0b47ead0c2aa9bdc45ee1",
+    "content-hash": "c38cbadf657f70572fc5148b018869d4",
     "packages": [
         {
             "name": "doctrine/cache",
@@ -550,16 +550,16 @@
         },
         {
             "name": "storyblok/php-client",
-            "version": "dev-master",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/storyblok/php-client.git",
-                "reference": "1f763dc70d026c58412a9d9a4d09b09344315776"
+                "reference": "a38c361b14fbd13463b671bc5e59eec846c8c804"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/storyblok/php-client/zipball/1f763dc70d026c58412a9d9a4d09b09344315776",
-                "reference": "1f763dc70d026c58412a9d9a4d09b09344315776",
+                "url": "https://api.github.com/repos/storyblok/php-client/zipball/a38c361b14fbd13463b671bc5e59eec846c8c804",
+                "reference": "a38c361b14fbd13463b671bc5e59eec846c8c804",
                 "shasum": ""
             },
             "require": {
@@ -586,7 +586,7 @@
             "keywords": [
                 "storyblok"
             ],
-            "time": "2016-06-04 16:21:52"
+            "time": "2016-06-05 08:28:57"
         },
         {
             "name": "symfony/debug",
@@ -1544,9 +1544,7 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "storyblok/php-client": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
