@@ -16,16 +16,28 @@
 	<script type="text/javascript" src="{{ asset('scripts/main.js') }}"></script>
 
 	{% if app.request.get('_storyblok') %}
-		<script type="text/javascript" src="//www.storyblok.com/storyblok.js"></script>
+		<script type="text/javascript" src="//www.storyblok.com/storyblok-v2.js"></script>
 		<script type="text/javascript">
-			storyblok.init({});
+			function invalidateStory(data) {
+				$.ajax({
+					url: '/clear_cache',
+					type: 'GET',
+					data: data
+				})
+			}
+
+			storyblok.init();
 
 			storyblok.on('change', function() {
 				window.location.reload(true);
 			});
 			
-			storyblok.on('published', function() {
-				window.location.href = window.location.href + '&_storyblok_published=1'
+			storyblok.on('published', function(data) {
+				invalidateStory(data);
+			});
+
+			storyblok.on('unpublished', function(data) {
+				invalidateStory(data);
 			});
 		</script>
 	{% endif %}
