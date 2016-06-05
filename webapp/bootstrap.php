@@ -21,13 +21,34 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 
 $app->register(new Silex\Provider\UrlGeneratorServiceProvider());
 $app->register(new App\Helpers\Twig());
-$app->register(new App\Providers\Storyblok(), array(
-    'storyblok.options' => array(
-        'privateToken' => 'oJKorCQdK8DANs7EaIj9sAtt',
-        'spaceId' => '39839',
-        'cacheProvider' => 'filesystem',
-        'cacheFolder' => __DIR__ . '/../cache/'
-    )
-));
+
+
+// Get heroku postgres connection if exists
+if (getenv('DATABASE_URL')) {
+    $databaseParts = parse_url(getenv('DATABASE_URL'));
+    $databasePdo = sprintf('pgsql:host=%s;dbname=%s', $databaseParts['host'], substr($databaseParts['path'], 1));
+
+    $app->register(new App\Providers\Storyblok(), array(
+        'storyblok.options' => array(
+            'privateToken' => 'oJKorCQdK8DANs7EaIj9sAtt',
+            'spaceId' => '39839',
+            'cacheProvider' => 'postgres',
+            'cacheOptions' => array(
+                'pdo' => new \PDO($databasePdo, $databaseParts['user'], $databaseParts['pass']),
+                'db_table' => 'storyblok',
+                'preflight' => false
+            )
+        )
+    ));
+} else {
+    $app->register(new App\Providers\Storyblok(), array(
+        'storyblok.options' => array(
+            'privateToken' => 'oJKorCQdK8DANs7EaIj9sAtt',
+            'spaceId' => '39839',
+            'cacheProvider' => 'filesystem',
+            'cacheOptions' => array('path' => __DIR__ . '/../cache/')
+        )
+    ));
+}
 
 $app->boot();

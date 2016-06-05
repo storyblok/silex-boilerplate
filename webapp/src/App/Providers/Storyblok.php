@@ -26,7 +26,7 @@ class Storyblok implements ServiceProviderInterface
             $client->setSpace($options['spaceId']);
 
             if ($options['cacheProvider']) {
-                $client->setCache($options['cacheProvider'], $options['cacheFolder']);
+                $client->setCache($options['cacheProvider'], $options['cacheOptions']);
             }
 
             return $client;
