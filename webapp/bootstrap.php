@@ -27,6 +27,7 @@ $app->register(new App\Helpers\Twig());
 if (getenv('DATABASE_URL')) {
     $databaseParts = parse_url(getenv('DATABASE_URL'));
     $databasePdo = sprintf('pgsql:host=%s;dbname=%s', $databaseParts['host'], substr($databaseParts['path'], 1));
+    $createTable = isset($_GET['_init']) ? true : false;
 
     $app->register(new App\Providers\Storyblok(), array(
         'storyblok.options' => array(
@@ -36,7 +37,7 @@ if (getenv('DATABASE_URL')) {
             'cacheOptions' => array(
                 'pdo' => new \PDO($databasePdo, $databaseParts['user'], $databaseParts['pass']),
                 'db_table' => 'storyblok',
-                'preflight' => false
+                'preflight' => $createTable
             )
         )
     ));
