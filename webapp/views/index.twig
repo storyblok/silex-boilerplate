@@ -1,49 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>{{ story.name }}</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
-	<meta http-equiv="X-UA-Compatible" content="IE=11"/>
-
-	{% for alternate in story.alternates %}
-		<link href="/{{ alternate.full_slug }}" hreflang="{{ alternate.full_slug|split('/')[0] }}" rel="alternate">
-	{% endfor %}
+	{% block head %}{% endblock %}
 
 	<link rel="stylesheet" href="{{ asset('styles/main.css') }}" media="all" />
-	
 </head>
 <body>
+
 	{% block content %}{% endblock %}
 
 	<script type="text/javascript" src="{{ asset('scripts/main.js') }}"></script>
 
-	{% if app.request.get('_storyblok') %}
-		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-		<script type="text/javascript" src="//app.storyblok.com/storyblok-v3.js"></script>
-		<script type="text/javascript">
-			function invalidateStory(data) {
-				$.ajax({
-					url: '/clear_cache',
-					type: 'GET',
-					data: data
-				})
-			}
-
-			storyblok.init();
-
-			storyblok.on('change', function() {
-				window.location.reload(true);
-			});
-			
-			storyblok.on('published', function(data) {
-				invalidateStory(data);
-			});
-
-			storyblok.on('unpublished', function(data) {
-				invalidateStory(data);
-			});
-		</script>
-	{% endif %}
+	{% block storyblok %}{% endblock %}
+	
 </body>
 </html>
