@@ -31,8 +31,7 @@ if (getenv('DATABASE_URL')) {
 
     $app->register(new App\Providers\Storyblok(), array(
         'storyblok.options' => array(
-            'privateToken' => 'oJKorCQdK8DANs7EaIj9sAtt',
-            'spaceId' => '39839',
+            'privateToken' => '###insert-private-token###',
             'cacheProvider' => 'postgres',
             'cacheOptions' => array(
                 'pdo' => new \PDO($databasePdo, $databaseParts['user'], $databaseParts['pass']),
@@ -44,8 +43,7 @@ if (getenv('DATABASE_URL')) {
 } else {
     $app->register(new App\Providers\Storyblok(), array(
         'storyblok.options' => array(
-            'privateToken' => 'oJKorCQdK8DANs7EaIj9sAtt',
-            'spaceId' => '39839',
+            'privateToken' => '###insert-private-token###',
             'cacheProvider' => 'filesystem',
             'cacheOptions' => array('path' => __DIR__ . '/../cache/')
         )

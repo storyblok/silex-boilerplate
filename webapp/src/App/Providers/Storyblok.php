@@ -23,9 +23,8 @@ class Storyblok implements ServiceProviderInterface
         $app['storyblok'] = $app->share(function () use ($app) {
             $options = $app['storyblok.options'];
             $client = new \Storyblok\Client($options['privateToken']);
-            $client->setSpace($options['spaceId']);
 
-            if ($options['cacheProvider']) {
+            if (isset($options['cacheProvider'])) {
                 $client->setCache($options['cacheProvider'], $options['cacheOptions']);
             }
 

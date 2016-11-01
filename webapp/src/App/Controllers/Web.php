@@ -19,7 +19,6 @@ class Web implements ControllerProviderInterface {
                 // How to use WITHOUT the silex provider:
                 //  
                 // $client = new \Storyblok\Client('###insert-private-token###');
-                // $client->setSpace('###insert-space-id###');
                 // $client->setCache('filesytem', $app['config.cacheFolder']);
                 // $client->getStoryBySlug($app['config.locale'] . '/' . $slug);
                 // $data = $client->getStoryContent();

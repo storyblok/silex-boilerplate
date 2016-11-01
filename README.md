@@ -4,7 +4,7 @@ This is a very basic setup using the minimalistic silex framework and twig as re
 
 ## Setup
 
-Be sure to change privateToken and spaceId in webapp/bootstrap.php
+Be sure to change privateToken in webapp/bootstrap.php
 
 ## One Click deploy with heroku
 
