@@ -8,8 +8,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 $app = new Silex\Application();
 
-$app['debug']                   = true;
-$app['config.twig.cache']       = false;
+require_once __DIR__ . '/config.php';
 
 $app->register(new Silex\Provider\TwigServiceProvider(), array(
     'twig.path' => WEBAPP_DIR . '/views',
@@ -31,7 +30,7 @@ if (getenv('DATABASE_URL')) {
 
     $app->register(new App\Providers\Storyblok(), array(
         'storyblok.options' => array(
-            'privateToken' => '###insert-private-token###',
+            'privateToken' => $app['storyblok.privateToken'],
             'cacheProvider' => 'postgres',
             'cacheOptions' => array(
                 'pdo' => new \PDO($databasePdo, $databaseParts['user'], $databaseParts['pass']),
@@ -43,7 +42,7 @@ if (getenv('DATABASE_URL')) {
 } else {
     $app->register(new App\Providers\Storyblok(), array(
         'storyblok.options' => array(
-            'privateToken' => '###insert-private-token###',
+            'privateToken' => $app['storyblok.privateToken'],
             'cacheProvider' => 'filesystem',
             'cacheOptions' => array('path' => __DIR__ . '/../cache/')
         )
