@@ -1,16 +1,11 @@
 <?php
 
 $app->before(function() use ($app) {
-    $app['config.locale'] = $app['request']->attributes->get('_locale');
     $app['globaldata'] = array();
 });
 
 $app->get('/', function() use($app) {
-    return $app->redirect('welcome');
-});
-
-$app->get('/welcome', function() use($app) {
-    return $app['twig']->render('components/welcome.twig');
+    return $app->redirect($app['config.home']);
 });
 
 $app->get('/clear_cache', function() use($app) {
@@ -24,6 +19,6 @@ $app->get('/clear_cache', function() use($app) {
     return $app->json(array('success' => true));
 });
 
-$app->mount('/{_locale}', new App\Controllers\Web());
+$app->mount('/{slug}', new App\Controllers\Web());
 
 $app->run();

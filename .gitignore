@@ -13,3 +13,4 @@ webapp/cache
 webapp/app.db
 cache/*
 !cache/keep
+public/*
