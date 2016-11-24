@@ -42,6 +42,6 @@ By pressing the *save* button the new story will be created & you will be forwar
 ![adding a name & a slug](https://a.storyblok.com/f/c8923bc32c/create-a-story.jpg)
 
 # That's it!
-you're now done setting up your space & also already created your first story. Start now creating your own components and build you website.
+You're now done setting up your space & also already created your first story. Start now creating your own components and build you website.
 
-
+You should now can access your story here: `http://localhost:4040/{slug}`.
