@@ -4,7 +4,7 @@ This is a very basic setup using the minimalistic silex framework and twig as re
 
 ## Setup
 
-Be sure to change privateToken in `webapp/config.php`.
+Be sure to change privateToken in `webapp/config.php`. For a full guide just visit the [SETUP.md](https://github.com/storyblok/silex-boilerplate/blob/master/SETUP.md).
 
 ## One Click deploy with heroku
 
