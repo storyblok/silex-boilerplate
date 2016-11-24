@@ -4,6 +4,14 @@ $app->before(function() use ($app) {
     $app['globaldata'] = array();
 });
 
+if($app['config.show_help']) {
+	$app->error(function (\Exception $e, $code) use ($app) {
+		if($code == '404') {
+			return file_get_contents('https://github.com/storyblok/silex-boilerplate/blob/master/SETUP.md');
+		}
+	});
+}
+
 $app->get('/', function() use($app) {
     return $app->redirect($app['config.home']);
 });
