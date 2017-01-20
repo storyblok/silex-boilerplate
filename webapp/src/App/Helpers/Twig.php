@@ -22,7 +22,6 @@ class Twig implements ServiceProviderInterface
         
         $app['twig']->addFunction(new \Twig_SimpleFunction('getStories', function ($starts_with, $sort_by = null, $with_tag = null, $page = 0, $per_page = 25) use ($app) {
             try {
-                $starts_with = $app['config.locale'] . '/' . $starts_with;
 
                 $app['storyblok']->getStories(
                     array_filter(
