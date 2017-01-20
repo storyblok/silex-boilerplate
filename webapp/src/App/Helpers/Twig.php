@@ -20,6 +20,15 @@ class Twig implements ServiceProviderInterface
             return '/' . $asset;
         }));
         
+        $app['twig']->addFunction(new \Twig_SimpleFunction('getDatasourceEntries', function ($slug) use ($app) {
+            try {
+                return $app['storyblok']->getDatasourceEntries($slug)->getAsNameValueArray();
+            } catch (\Exception $e) {
+                throw new Exception($e);
+            }
+            return null;
+        }));
+        
         $app['twig']->addFunction(new \Twig_SimpleFunction('getStories', function ($starts_with, $sort_by = null, $with_tag = null, $page = 0, $per_page = 25) use ($app) {
             try {
 
