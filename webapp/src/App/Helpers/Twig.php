@@ -12,10 +12,6 @@ class Twig implements ServiceProviderInterface
 {
     public function register(Application $app)
     {   
-        $app['twig']->addFunction(new \Twig_SimpleFunction('url', function ($path) use ($app) {
-            return $path;
-        }));
-
         $app['twig']->addFunction(new \Twig_SimpleFunction('asset', function ($asset) use ($app) {
             return '/' . $asset;
         }));
@@ -33,8 +29,10 @@ class Twig implements ServiceProviderInterface
              if(!isset($app['storyblok.links'])) {
                 $app['storyblok.links'] = $app['storyblok']->getLinks()->getBody()['links'];
              }
-             if(isset($app['storyblok.links'][$link['id']])) {
+             if(isset($link['id']) && isset($app['storyblok.links'][$link['id']])) {
                  return '/'. $app['storyblok.links'][$link['id']]['slug'];
+             } else {
+                 return $link['url'];
              }
         }));
         
