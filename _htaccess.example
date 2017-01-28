@@ -1,0 +1,32 @@
+order deny,allow
+allow from all
+
+#Options +FollowSymlinks
+RewriteEngine On
+
+RewriteCond %{REQUEST_URI} !^/public/
+RewriteCond %{REQUEST_URI} ^/images/
+RewriteRule ^(.*)$ /public/$1 [L]
+
+RewriteCond %{REQUEST_URI} !^/public/
+RewriteCond %{REQUEST_URI} ^/styles/
+RewriteRule ^(.*)$ /public/$1 [L]
+
+RewriteCond %{REQUEST_URI} !^/public/
+RewriteCond %{REQUEST_URI} ^/scripts/
+RewriteRule ^(.*)$ /public/$1 [L]
+
+RewriteCond %{REQUEST_URI} !^/public/
+RewriteCond %{REQUEST_URI} ^/data/
+RewriteRule ^(.*)$ /public/$1 [L]
+
+RewriteCond %{REQUEST_URI} !^/public/
+RewriteCond %{REQUEST_URI} ^/fonts/
+RewriteRule ^(.*)$ /public/$1 [L]
+
+RewriteBase /public/
+RewriteCond %{REQUEST_URI} !^/public/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ index.php [L]
+	
+ErrorDocument 404 /index.php
