@@ -10,25 +10,24 @@ var autoprefixer = require('gulp-autoprefixer');
 
 function styles(debug) {
     var debug = debug ? debug : false;
-    var pipe = gulp.src(config.src.scss + '/**/*.{sass,scss}') 
-    .pipe(globbing({
-        extensions: ['.scss']
-    }))
-    .pipe(sass()
-        .on('error', notify.onError(function (error) {
-            return error.message;
-        })))
-    .pipe(autoprefixer({
-        browsers: ['last 2 versions'],
-        cascade: false
-    }))
-
-    if (!debug) {
-        pipe.pipe(minify());
-    }
+    var pipe = gulp.src(config.src.scss + '/**/*.{sass,scss}')
+        .pipe(globbing({
+            extensions: ['.scss']
+        }))
+        .pipe(sass({
+            errLogToConsole: true,
+            outputStyle: debug ? 'expanded' : 'compressed'
+        })
+            .on('error', notify.onError(function (error) {
+                return error.message;
+            })))
+        .pipe(autoprefixer({
+            browsers: ['last 2 versions'],
+            cascade: false
+        }))
 
     pipe.pipe(gulp.dest(config.dest.css))
-    .pipe(size({title: 'styles'}));
+        .pipe(size({ title: 'styles' }));
 
     return pipe;
 }
