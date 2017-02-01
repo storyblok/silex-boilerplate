@@ -11,11 +11,11 @@ use Silex\ServiceProviderInterface;
 class Twig implements ServiceProviderInterface
 {
     public function register(Application $app)
-    {   
+    {
         $app['twig']->addFunction(new \Twig_SimpleFunction('asset', function ($asset) use ($app) {
             return '/' . $asset;
         }));
-        
+
         $app['twig']->addFunction(new \Twig_SimpleFunction('getDatasourceEntries', function ($slug) use ($app) {
             try {
                 return $app['storyblok']->getDatasourceEntries($slug)->getAsNameValueArray();
@@ -24,7 +24,7 @@ class Twig implements ServiceProviderInterface
             }
             return null;
         }));
-        
+
         $app['twig']->addFilter(new \Twig_SimpleFilter('url', function ($link) use ($app) {
              if(!isset($app['storyblok.links'])) {
                 $app['storyblok.links'] = $app['storyblok']->getLinks()->getBody()['links'];
@@ -35,8 +35,8 @@ class Twig implements ServiceProviderInterface
                  return $link['url'];
              }
         }));
-        
-        $app['twig']->addFunction(new \Twig_SimpleFunction('getStories', function ($starts_with, $sort_by = null, $with_tag = null, $page = 0, $per_page = 25) use ($app) {
+
+        $app['twig']->addFunction(new \Twig_SimpleFunction('getStories', function ($starts_with, $page = 0, $per_page = 25,$sort_by = null, $with_tag = null) use ($app) {
             try {
 
                 $app['storyblok']->getStories(
