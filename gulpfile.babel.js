@@ -18,6 +18,7 @@ const source = require('vinyl-source-stream')
 const size = require('gulp-size')
 const tsify = require('tsify')
 
+const externals = require('./externals.js')
 
 gulp.task('clean', function () {
   del.sync(['public']);
@@ -37,6 +38,14 @@ gulp.task('content', function () {
     }))
 })
 
+gulp.task('fonts', function () {
+  return gulp.src('app/fonts/**/*')
+    .pipe(gulp.dest('public/fonts'))
+    .pipe(size({
+      title: "fonts"
+    }))
+})
+
 gulp.task('scripts', function () {
   return browserify({
     entries: 'app/scripts/main.ts',
@@ -50,6 +59,12 @@ gulp.task('scripts', function () {
     .pipe(buffer())
     .pipe(gulp.dest('public/scripts'))
     .pipe(browserSync.stream());
+})
+
+gulp.task('scripts:vendor', function () {
+  return gulp.src(externals)
+    .pipe(concat('vendor.js'))
+    .pipe(gulp.dest('public/scripts'))
 })
 
 gulp.task('styles', function () {
@@ -87,7 +102,7 @@ gulp.task('php', function () {
   })
 })
 
-gulp.task('default', ['clean', 'version', 'styles', 'scripts', 'images', 'content', 'php'], function () {
+gulp.task('default', ['clean', 'version', 'styles', 'scripts', 'scripts:vendor', 'fonts', 'images', 'content', 'php'], function () {
   browserSync({
     port: 4200,
     proxy: {
@@ -109,7 +124,7 @@ gulp.task('default', ['clean', 'version', 'styles', 'scripts', 'images', 'conten
   gulp.watch('app/scripts/**/*', ['scripts'])
 });
 
-gulp.task('build', ['clean', 'version', 'styles', 'scripts', 'images', 'content']);
+gulp.task('build', ['clean', 'version', 'styles', 'scripts', 'scripts:vendor', 'fonts', 'images', 'content']);
 
 function string_src(filename, string) {
   var src = require('stream').Readable({ objectMode: true });
