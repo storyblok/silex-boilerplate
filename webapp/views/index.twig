@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	{% block head %}{% endblock %}
 
 	<link rel="stylesheet" href="{{ asset('styles/main.css') }}" media="all" />
 </head>
+
 <body>
 
 	{% block content %}{% endblock %}
 
+	<script type="text/javascript" src="{{ asset('scripts/vendor.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('scripts/main.js') }}"></script>
 
 	{% block storyblok %}{% endblock %}
-	
+
 </body>
+
 </html>
