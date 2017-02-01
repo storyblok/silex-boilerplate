@@ -16,17 +16,13 @@ class Web implements ControllerProviderInterface {
             $data = [];
 
             try {
-                // How to use WITHOUT the silex provider:
-                //  
-                // $client = new \Storyblok\Client('###insert-private-token###');
-                // $client->setCache('filesytem', $app['config.cacheFolder']);
-                // $client->getStoryBySlug($slug);
-                // $data = $client->getStoryContent();
+                if ( $app['config.redirect_home'] && $app['config.home'] == $slug && !$request->query->get('redirect') && !$request->query->get('_storyblok') ) {
+                    $app->abort(404, "Story $slug does not exist.");
+                }
 
-                // Easily retreive a story by using the silex provider
                 $app['storyblok']->getStoryBySlug($slug);
                 $data = $app['storyblok']->getStoryContent();
-                
+
             } catch (\Exception $e) {
                 $app->abort(404, "Story $slug does not exist.");
             }
