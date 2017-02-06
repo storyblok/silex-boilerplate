@@ -1,0 +1,23 @@
+cache:
+  paths:
+  - node_modules/
+  - webapp/vendor/
+before_script:
+  - npm install
+  - composer install
+live_build:
+  script:
+    - gulp build
+    - rsync -rltDvz -e ssh $CI_PROJECT_DIR/public/ gitlab-runner@{{YOUR_LIVESERVER}}:{{YOUR_PATH}}/public/
+    - rsync -rltDvz -e ssh $CI_PROJECT_DIR/webapp/ gitlab-runner@{{YOUR_LIVESERVER}}:{{YOUR_PATH}}/webapp/
+    - rsync -rltDvz -e ssh $CI_PROJECT_DIR/.htaccess gitlab-runner@{{YOUR_LIVESERVER}}:{{YOUR_PATH}}/.htaccess
+  only:
+    - master
+dev_build:
+  script:
+    - gulp build
+    - rsync -rltDvz -e ssh $CI_PROJECT_DIR/public/ gitlab-runner@{{YOUR_DEV_SERVER}}:{{YOUR_PATH}}/public/
+    - rsync -rltDvz -e ssh $CI_PROJECT_DIR/webapp/ gitlab-runner@{{YOUR_DEV_SERVER}}:{{YOUR_PATH}}/webapp/
+    - rsync -rltDvz -e ssh $CI_PROJECT_DIR/.htaccess gitlab-runner@{{YOUR_DEV_SERVER}}:{{YOUR_PATH}}/.htaccess
+  only:
+    - develop
