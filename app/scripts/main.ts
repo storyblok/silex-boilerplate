@@ -1,5 +1,4 @@
 import './companyNotice';
-import 'bootstrap';
 
 // this will iterate over all exported Controllers from the
 // ./controllers/Controllers.ts file. simply have a look at 
