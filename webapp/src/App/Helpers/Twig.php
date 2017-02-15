@@ -49,6 +49,15 @@ class Twig implements ServiceProviderInterface
         }));
 
         /*
+        * asset function (beta)
+        *
+        * Usage: `{{ asset('path') }}`
+        */
+        $app['twig']->addFunction(new \Twig_SimpleFunction('asset', function ($path) use ($app) {
+            return '/' . $path;
+        }));
+
+        /*
         * allows you to access the storyblok tags of a folder
         *
         * Usage: `{% set tags = getTags(folder_name) %}`
