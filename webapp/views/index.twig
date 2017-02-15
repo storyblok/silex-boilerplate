@@ -4,15 +4,15 @@
 <head>
 	{% block head %}{% endblock %}
 
-	<link rel="stylesheet" href="{{ asset('styles/main.css') }}" media="all" />
+	<link rel="stylesheet" href="{{ asset('styles/main.css') | version }}" media="all" />
 </head>
 
 <body>
 
 	{% block content %}{% endblock %}
 
-	<script type="text/javascript" src="{{ asset('scripts/vendor.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('scripts/main.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('scripts/vendor.js') | version }}"></script>
+	<script type="text/javascript" src="{{ asset('scripts/main.js') | version }}"></script>
 
 	{% block storyblok %}{% endblock %}
 

@@ -12,19 +12,20 @@ class Twig implements ServiceProviderInterface
 {
     public function register(Application $app)
     {
-        $app['twig']->addFunction(new \Twig_SimpleFunction('asset', function ($asset) use ($app) {
-            return '/' . $asset;
+        /*
+        * Appends the version string to an url
+        *
+        * Usage: `{{ $my_url | version }}`
+        */
+        $app['twig']->addFilter(new \Twig_SimpleFilter('version', function ($url) use ($app) {
+            return addToUrl($url, 'version', $app['config.version']);
         }));
 
-        $app['twig']->addFunction(new \Twig_SimpleFunction('getDatasourceEntries', function ($slug) use ($app) {
-            try {
-                return $app['storyblok']->getDatasourceEntries($slug)->getAsNameValueArray();
-            } catch (\Exception $e) {
-                throw new Exception($e);
-            }
-            return null;
-        }));
-
+        /*
+        * Transforms an `url` object from the storyblok api to an URL.
+        *
+        * Usage: `{{ $my_url_object | url }}`
+        */
         $app['twig']->addFilter(new \Twig_SimpleFilter('url', function ($link) use ($app) {
              if(!isset($app['storyblok.links'])) {
                 $app['storyblok.links'] = $app['storyblok']->getLinks()->getBody()['links'];
@@ -36,6 +37,52 @@ class Twig implements ServiceProviderInterface
              }
         }));
 
+        /*
+        * Pretty dump a variable with pre tags.
+        *
+        * Usage: `{{ $my_variable | dump }}`
+        */
+        $app['twig']->addFilter(new \Twig_SimpleFilter('dump', function ($variable) use ($app) {
+             echo '<pre class="uk-text-left">';
+             var_dump($variable);
+             echo '</pre>';
+        }));
+
+        /*
+        * allows you to access the storyblok tags of a folder
+        *
+        * Usage: `{% set tags = getTags(folder_name) %}`
+        */
+        $app['twig']->addFunction(new \Twig_SimpleFunction('getTags', function ($starts_with) use ($app) {
+            try {
+                return $app['storyblok']->getTags(array(
+                    'starts_with' => $starts_with
+                ))->getTagsAsStringArray();
+            } catch (\Exception $e) {
+                throw new \Exception($e);
+            }
+            return array();
+        }));
+
+        /*
+        * allows you to access a storyblok datasource
+        *
+        * Usage: `{% set datasources = getDatasourceEntries(folder_name) %}`
+        */
+        $app['twig']->addFunction(new \Twig_SimpleFunction('getDatasourceEntries', function ($slug) use ($app) {
+            try {
+                return $app['storyblok']->getDatasourceEntries($slug)->getAsNameValueArray();
+            } catch (\Exception $e) {
+                throw new Exception($e);
+            }
+            return null;
+        }));
+
+        /*
+        * allows you to access a list of stories from storyblok
+        *
+        * Usage: `{% set stories = getStories('starts_with') %}`
+        */
         $app['twig']->addFunction(new \Twig_SimpleFunction('getStories', function ($starts_with, $page = 0, $per_page = 25,$sort_by = null, $with_tag = null) use ($app) {
             try {
 
@@ -59,6 +106,18 @@ class Twig implements ServiceProviderInterface
             }
             return null;
         }));
+
+        function addToUrl($url, $key, $value = null) {
+            $query = parse_url($url, PHP_URL_QUERY);
+            if ($query) {
+                parse_str($query, $queryParams);
+                $queryParams[$key] = $value;
+                $url = str_replace("?$query", '?' . http_build_query($queryParams), $url);
+            } else {
+                $url .= '?' . urlencode($key) . '=' . urlencode($value);
+            }
+            return $url;
+        }
     }
 
     public function boot(Application $app)
