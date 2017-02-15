@@ -106,7 +106,7 @@ gulp.task('default', ['clean', 'version', 'styles', 'scripts', 'scripts:vendor',
   browserSync({
     port: 4200,
     proxy: {
-      target: 'http://0.0.0.0:4040',
+      target: 'http://localhost:4040',
       reqHeaders: function (config) {
         return {
           'accept-encoding': 'identity',

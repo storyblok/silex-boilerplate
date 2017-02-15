@@ -16,7 +16,9 @@ class Web implements ControllerProviderInterface {
             $data = [];
 
             try {
-                if ( $app['config.redirect_home'] && $app['config.home'] == $slug && !$request->query->get('redirect') && !$request->query->get('_storyblok') ) {
+                // if home should be available on / it shouldn't be on /{{home_slug}}
+                // except we are in storyblok or the redirect parameter is present.
+                if ( !$app['config.redirect_home'] && $app['config.home'] == $slug && !$request->query->get('redirect') && !$request->query->get('_storyblok') ) {
                     $app->abort(404, "Story $slug does not exist.");
                 }
 
