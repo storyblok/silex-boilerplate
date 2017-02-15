@@ -38,7 +38,11 @@ $app->get('/clear_cache', function() use($app) {
 		$app['storyblok']->getStoryBySlug($app['request']->get('slug'));
 	}
 
-    return $app->json(array('success' => true));
+	if(empty($app['request']->get('slug'))) {
+		$app['storyblok']->flushCache();
+	}
+
+	return $app->json(array('success' => true));
 });
 
 $app->mount('/{slug}', new App\Controllers\Web());
