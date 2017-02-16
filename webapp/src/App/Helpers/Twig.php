@@ -43,7 +43,7 @@ class Twig implements ServiceProviderInterface
         * Usage: `{{ $my_variable | dump }}`
         */
         $app['twig']->addFilter(new \Twig_SimpleFilter('dump', function ($variable) use ($app) {
-             echo '<pre class="uk-text-left">';
+             echo '<pre>';
              var_dump($variable);
              echo '</pre>';
         }));
@@ -107,9 +107,29 @@ class Twig implements ServiceProviderInterface
                     )
                 );
 
-                $data = $app['storyblok']->getStoryContent();
+                $data = $app['storyblok']->getBody();
 
                 return $data['stories'];
+            } catch (\Exception $e) {
+                throw new Exception($e);
+            }
+            return null;
+        }));
+
+        /*
+        * allows you to access a single story by slug
+        * 
+        * Hint: If you want to get the story from an Storylink just use the `| url` to generate the full slug.
+        *
+        * Usage: `{% set story = getStoryBySlug('/your/full/slug') %}`
+        */
+        $app['twig']->addFunction(new \Twig_SimpleFunction('getStoryBySlug', function ($full_slug) use ($app) {
+            try {
+                $app['storyblok']->getStoryBySlug($full_slug);
+                
+                $data = $app['storyblok']->getBody();
+
+                return $data['story'];
             } catch (\Exception $e) {
                 throw new Exception($e);
             }
