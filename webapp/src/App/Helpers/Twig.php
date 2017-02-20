@@ -92,7 +92,7 @@ class Twig implements ServiceProviderInterface
         *
         * Usage: `{% set stories = getStories('starts_with') %}`
         */
-        $app['twig']->addFunction(new \Twig_SimpleFunction('getStories', function ($starts_with, $page = 0, $per_page = 25,$sort_by = null, $with_tag = null) use ($app) {
+        $app['twig']->addFunction(new \Twig_SimpleFunction('getStories', function ($starts_with, $page = 0, $per_page = 25, $sort_by = null, $with_tag = null, $is_startpage = null) use ($app) {
             try {
 
                 $app['storyblok']->getStories(
@@ -102,8 +102,10 @@ class Twig implements ServiceProviderInterface
                         'with_tag' => $with_tag,
                         'sort_by' => $sort_by,
                         'per_page' => $per_page,
-                        'page' => $page
-                        )
+                        'page' => $page,
+                        'is_startpage' => $is_startpage
+                        ), 
+                        function($var){ return !is_null($var); } // removes if is NULL
                     )
                 );
 
