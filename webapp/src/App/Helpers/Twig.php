@@ -4,6 +4,7 @@ namespace App\Helpers;
 
 use Silex\Application;
 use Silex\ServiceProviderInterface;
+use \Parsedown;
 
 /**
 * Global Twig helpers
@@ -12,6 +13,21 @@ class Twig implements ServiceProviderInterface
 {
     public function register(Application $app)
     {
+        /*
+        * Allows to use Markdown in your templates
+        *
+        * Usage: `{{ $my_url | markdown }}`
+        */
+        $app['twig']->addFilter(new \Twig_SimpleFilter('markdown', function ($text) {
+            if (is_string($text)) {
+                return Parsedown::instance()
+                    ->setMarkupEscaped(false)
+                    ->setBreaksEnabled(true)
+                    ->text($text);
+            }
+            return '';
+        }));
+
         /*
         * Appends the version string to an url
         *
@@ -92,18 +108,18 @@ class Twig implements ServiceProviderInterface
         *
         * Usage: `{% set stories = getStories('starts_with') %}`
         */
-        $app['twig']->addFunction(new \Twig_SimpleFunction('getStories', function ($starts_with, $page = 0, $per_page = 25,$sort_by = null, $with_tag = null) use ($app) {
+        $app['twig']->addFunction(new \Twig_SimpleFunction('getStories', function ($starts_with, $page = 1, $per_page = 25, $options = array()) use ($app) {
             try {
 
                 $app['storyblok']->getStories(
                     array_filter(
-                        array(
-                        'starts_with' => $starts_with,
-                        'with_tag' => $with_tag,
-                        'sort_by' => $sort_by,
-                        'per_page' => $per_page,
-                        'page' => $page
-                        )
+                        array_merge( $options, 
+                            array(
+                            'starts_with' => $starts_with,
+                            'per_page' => $per_page,
+                            'page' => $page,
+                            )
+                        ), function($var) { return !is_null($var); } // removes only NULL
                     )
                 );
 
@@ -114,6 +130,15 @@ class Twig implements ServiceProviderInterface
                 throw new Exception($e);
             }
             return null;
+        }));
+
+        /*
+        * allows you to use a json to configure the getStories options
+        *
+        * Usage: `{% set stories = getStories('starts_with', 1, 25, options({"sort_by":"name:asc","is_startpage":false})) %}`
+        */
+        $app['twig']->addFunction(new \Twig_SimpleFunction('options', function ($string) use ($app) {
+            return (array) json_decode($string);
         }));
 
         /*
