@@ -2,19 +2,50 @@
 <html>
 
 <head>
-	{% block head %}{% endblock %}
+	<title>{{ story.name }}</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
+	<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+	{% for alternate in story.alternates %}
+		<link href="/{{ alternate.full_slug }}" hreflang="{{ alternate.full_slug|split('/')[0] }}" rel="alternate">
+	{% endfor %}
 
 	<link rel="stylesheet" href="{{ asset('styles/main.css') | version }}" media="all" />
 </head>
 
 <body>
 
-	{% block content %}{% endblock %}
+	{% include 'components/' ~ story.content.component ~ '.twig' with { blok: story.content } %}
 
-	<script type="text/javascript" src="{{ asset('scripts/vendor.js') | version }}"></script>
 	<script type="text/javascript" src="{{ asset('scripts/main.js') | version }}"></script>
 
-	{% block storyblok %}{% endblock %}
+	{% if app.request.get('_storyblok') %}
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+	<script type="text/javascript" src="//app.storyblok.com/storyblok-latest.js"></script>
+	<script type="text/javascript">
+		function invalidateStory(data) {
+			$.ajax({
+				url: '/clear_cache',
+				type: 'GET',
+				data: data
+			})
+		}
+
+		storyblok.init();
+
+		storyblok.on('change', function() {
+			window.location.reload(true);
+		});
+		
+		storyblok.on('published', function(data) {
+			invalidateStory(data);
+		});
+
+		storyblok.on('unpublished', function(data) {
+			invalidateStory(data);
+		});
+	</script>
+{% endif %}
 
 </body>
 

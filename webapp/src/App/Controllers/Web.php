@@ -29,7 +29,7 @@ class Web implements ControllerProviderInterface {
                 $app->abort(404, "Story $slug does not exist.");
             }
 
-            return $app['twig']->render('components/root.twig', $data);
+            return $app['twig']->render('index.twig', $data);
         })->assert('slug', '.*');
 
         return $controllers;
