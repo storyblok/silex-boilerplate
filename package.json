@@ -4,6 +4,7 @@
   "private": false,
   "version": "0.0.0",
   "devDependencies": {
+    "babel-register": "^6.24.0",
     "browser-sync": "^2.12.5",
     "browserify": "^11.2.0",
     "del": "^1.2.0",
