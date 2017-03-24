@@ -14,7 +14,7 @@
     "gulp-connect-php": "0.0.7",
     "gulp-css-globbing": "^0.1.8",
     "gulp-plumber": "^1.0.1",
-    "gulp-sass": "^2.0.4",
+    "gulp-sass": "^2.3.1",
     "vinyl": "^1.1.1",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
