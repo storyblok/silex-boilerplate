@@ -43,6 +43,9 @@ class Twig implements ServiceProviderInterface
         * Usage: `{{ $my_url_object | url }}`
         */
         $app['twig']->addFilter(new \Twig_SimpleFilter('url', function ($link) use ($app) {
+             if(is_string($link)) {
+                return $link;
+             }
              if(!isset($app['storyblok.links'])) {
                 $app['storyblok.links'] = $app['storyblok']->getLinks()->getBody()['links'];
              }
