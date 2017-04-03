@@ -4,6 +4,8 @@
 </p>
 <br><br>
 
+[![GitHub release](https://img.shields.io/github/release/storyblok/silex-boilerplate.svg)](https://github.com/storyblok/silex-boilerplate/)
+
 ## What is a storyblok boilerplate
 If you want to use your server or have already an existing project in which you want to integrate Storyblok you can use one of our boilerplates. 
 
