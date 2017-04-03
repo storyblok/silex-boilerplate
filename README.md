@@ -76,3 +76,9 @@ php -r "readfile('https://getcomposer.org/installer');" | php
 sudo mkdir /usr/local/bin/
 sudo mv composer.phar /usr/local/bin/composer
 ```
+
+<br>
+<br>
+<p align="center">
+<img src="https://a.storyblok.com/f/39898/1c9c224705/storyblok_black.svg" alt="Storyblok Logo">
+</p>
