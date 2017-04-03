@@ -3,7 +3,7 @@
   "description": "silex-boilerplate",
   "private": false,
   "version": "0.0.0",
-  "author": "Dominik Angerer",
+  "author": "Dominik Angerer, Alexander Feiglstorfer",
   "devDependencies": {
     "babel-register": "^6.24.0",
     "browser-sync": "^2.12.5",
