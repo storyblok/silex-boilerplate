@@ -11,6 +11,8 @@
 	{% for alternate in story.alternates %}
 		<link href="/{{ alternate.full_slug }}" hreflang="{{ alternate.full_slug|split('/')[0] }}" rel="alternate">
 	{% endfor %}
+  
+  <link rel="icon" type="image/png" href="//app.storyblok.com/images/favicon-32x32.png" sizes="32x32">
 
 	<link rel="stylesheet" href="{{ asset('styles/main.css') | version }}" media="all" />
 </head>

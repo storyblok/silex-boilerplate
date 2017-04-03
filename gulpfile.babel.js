@@ -8,6 +8,7 @@ const fs = require('fs')
 const globbing = require('gulp-css-globbing')
 const gulp = require('gulp')
 const gitrev = require('git-rev')
+const notify = require('gulp-notify')
 const plumber = require('gulp-plumber')
 const php = require('gulp-connect-php')
 const reload = browserSync.reload
@@ -34,6 +35,7 @@ gulp.task('scripts', function () {
       entries: 'app/scripts/main.js'
     })
     .bundle()
+    .on('error', notify.onError(function (error) { return error.message; }))
     .pipe(source('main.js'))
     .pipe(gulp.dest('public/scripts/'))
     .pipe(browserSync.stream())
@@ -45,9 +47,11 @@ gulp.task('styles', function () {
     .pipe(globbing({
       extensions: ['.scss']
     }))
+    .on('error', notify.onError(function (error) { return 'There is an error in your stylesheet.'; }))
     .pipe(sass({
       outputStyle: 'expanded'
     }))
+    .on('error', notify.onError(function (error) { return error.message; }))
     .pipe(autoprefixer())
     .pipe(gulp.dest('public/styles'))
     .pipe(browserSync.stream())

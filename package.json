@@ -1,6 +1,6 @@
 {
-  "name": "silex-boilerplate-boilerplate",
-  "description": "silex-boilerplate-boilerplate",
+  "name": "silex-boilerplate",
+  "description": "silex-boilerplate",
   "private": false,
   "version": "0.0.0",
   "devDependencies": {
@@ -13,6 +13,7 @@
     "gulp-autoprefixer": "^2.3.1",
     "gulp-connect-php": "0.0.7",
     "gulp-css-globbing": "^0.1.8",
+    "gulp-notify": "^2.2.0",
     "gulp-plumber": "^1.0.1",
     "gulp-sass": "^2.3.1",
     "vinyl": "^1.1.1",
