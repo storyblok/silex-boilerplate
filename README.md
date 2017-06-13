@@ -1,17 +1,17 @@
 <p align="center">
-  <h1 align="center">silex-boilerplate for Storyblok</h1>
-  <p align="center">A <a href="https://www.storyblok.com" target="_blank">Storyblok</a> boilerplate in php with silex to simply start your website with us.</p>
+  <h1 align="center">silex-boilerplate using Storyblok</h1>
+  <p align="center">A <a href="https://www.storyblok.com" target="_blank">Storyblok</a> boilerplate in php with silex to kickstart your website.</p>
 </p>
 <br><br>
 
 [![GitHub release](https://img.shields.io/github/release/storyblok/silex-boilerplate.svg)](https://github.com/storyblok/silex-boilerplate/)
 
-## What is a storyblok boilerplate
-If you want to use your server or have already an existing project in which you want to integrate Storyblok you can use one of our boilerplates. 
+## What is a Storyblok boilerplate?
+If you want to use your server or have already an existing project in which you want to integrate Storyblok you can use one of the Storyblok boilerplates. 
 
-## How can I start with a boilerplate
+## How to start with a boilerplate?
 
-The most efficient way to start a storyblok project as a developer would be our [Command Line Interface](https://www.storyblok.com/docs/Guides/command-line-interface).
+The most efficient way to start a Storyblok project as a developer would be with the [Command Line Interface](https://www.storyblok.com/docs/Guides/command-line-interface).
 
 ```
 npm i storyblok -g
@@ -66,7 +66,7 @@ gulp
   Our [client library](https://github.com/storyblok/php-client) directly adds a file cache (you can change this setting as well) for every storyblok request you do - this folder is the place where we save the cached results. 
 
 
-## You want to know more about storyblok?
+## You want to know more about Storyblok?
 
 - [Prologue - Introduction](https://www.storyblok.com/docs/Prologue/Introduction)
 - [Terminology - Introduction](https://www.storyblok.com/docs/terminology/introduction)

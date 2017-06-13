@@ -26,7 +26,7 @@ class Twig implements ServiceProviderInterface
                     ->text($text);
             }
             return '';
-        }));
+        }, array('is_safe' => array('html'))));
 
         /*
         * Appends the version string to an url
